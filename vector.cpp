@@ -20,6 +20,25 @@ int main()
 		}
 		cout << endl;
 	}
+	vector<int> c;
+	c.push_back(1);//在后面插入
+	//c.insert(pos,elem);//在pos处插入elem
+	//c.begin();//数组的头指针，与insert一起用，可以头插
+	vector<int> v;
+	for (int i = 0; i < 5; i++)
+	{
+		v.push_back(i);
+	}
+	for (int i = 0; i < v.size(); i++)
+	{
+		cout << v[i] << '\t';
+	}
+	reverse(v.begin(), v.end());
+	cout << "\nAfter reversing : " << endl;
+	for (int i = 0; i < v.size(); i++)
+	{
+		cout << v[i] << '\t';
+	}
 
 	return 0;
 }
