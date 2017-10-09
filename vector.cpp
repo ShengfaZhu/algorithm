@@ -39,6 +39,10 @@ int main()
 	{
 		cout << v[i] << '\t';
 	}
+	
+	vector<int> v = { 3, 1, 2, 4, 7, 5 };
+	vector<int> v_copy(v);
+	//v_copy.assign(v.begin(), v.end());//copy v to v_copy
 
 	return 0;
 }
