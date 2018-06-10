@@ -4,7 +4,6 @@
 #include <climits>
 #include <cassert>
 #include <vector>
-#include <ctime>
 using namespace std;
 
 void merge(vector<int>& nums, int p, int q, int r)
@@ -42,17 +41,17 @@ void merge_sort(vector<int>& nums, int low, int high)
 }
 
 
-int main() {
-    vector<int> nums;
-    for (int i = 0; i < 20; i++) {
-        nums.push_back(rand() % 20);
-    }
-    cout << "before sorting : " << endl;
-    for (int i : nums) cout << i << "\t";
-    merge_sort(nums, 0, nums.size() - 1);
-    cout << "\nafter sorting : \n";
-    for (int i : nums) cout << i << "\t";   
-    system("pause");
-    return 0;
-}
+// int main() {
+//     vector<int> nums;
+//     for (int i = 0; i < 20; i++) {
+//         nums.push_back(rand() % 20);
+//     }
+//     cout << "before sorting : " << endl;
+//     for (int i : nums) cout << i << "\t";
+//     merge_sort(nums, 0, nums.size() - 1);
+//     cout << "\nafter sorting : \n";
+//     for (int i : nums) cout << i << "\t";   
+//     system("pause");
+//     return 0;
+// }
 

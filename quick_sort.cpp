@@ -34,17 +34,17 @@ void quick_sort(vector<int>& nums, int low, int high) {
     quick_sort(nums, m + 1, high);
 }
 
-int main() {
-    vector<int> nums;
-    for (int i = 0; i < 20; i++) {
-        nums.push_back(rand() % 20);
-    }
-    cout << "before sorting : " << endl;
-    for (int i : nums) cout << i << "\t";
-    quick_sort(nums, 0, nums.size());
-    cout << "\nafter sorting : \n";
-    for (int i : nums) cout << i << "\t";   
-    system("pause");
-    return 0;
-}
+// int main() {
+//     vector<int> nums;
+//     for (int i = 0; i < 20; i++) {
+//         nums.push_back(rand() % 20);
+//     }
+//     cout << "before sorting : " << endl;
+//     for (int i : nums) cout << i << "\t";
+//     quick_sort(nums, 0, nums.size());
+//     cout << "\nafter sorting : \n";
+//     for (int i : nums) cout << i << "\t";   
+//     system("pause");
+//     return 0;
+// }
 
