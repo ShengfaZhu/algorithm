@@ -9,7 +9,8 @@
                 "E:/MinGW/lib/gcc/mingw32/6.3.0/include/c++",
                 "E:/MinGW/lib/gcc/mingw32/6.3.0/include-fixed",
                 "E:/MinGW/include/*",
-                "E:/MinGW/lib/gcc/mingw32/6.3.0/include"
+                "E:/MinGW/lib/gcc/mingw32/6.3.0/include",
+                "E:/MinGW/lib/gcc/mingw32/6.3.0/include/c++/mingw32"
             ],
             "defines": [
                 "_DEBUG"
