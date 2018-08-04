@@ -42,6 +42,15 @@
         "deque": "cpp",
         "unordered_map": "cpp",
         "functional": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "chrono": "cpp",
+        "ctime": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "memory": "cpp",
+        "numeric": "cpp",
+        "ratio": "cpp",
+        "sstream": "cpp",
+        "thread": "cpp"
     }
 }

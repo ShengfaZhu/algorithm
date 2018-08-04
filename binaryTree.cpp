@@ -1,37 +1,61 @@
 #include <iostream>
+#include <climits>
+#include <queue>
 #include <vector>
 using namespace std;
-//二叉树的生成、遍历和镜像
 
+// definition of treenode
 struct TreeNode {
 	int val;
 	struct TreeNode *left;
 	struct TreeNode *right;
-	TreeNode(int x) :
-		val(x), left(NULL), right(NULL) {
-	}
+	TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-//生成二叉树,root->left->right
-//在前序序列，加上终节点，可以唯一确定二叉树
-//终节点用INT_MAX表示
-TreeNode *binaryTreeGenerate(vector<int> v)
-{
-	static int pos = -1;
-	pos++;
-	if (v.empty()) return NULL;
-	TreeNode *t = new TreeNode(NULL);
-	if (v[pos] == INT_MAX) return NULL;
-	else
-	{
-		t->val = v[pos];
-		t->left = binaryTreeGenerate(v);
-		t->right = binaryTreeGenerate(v);
+// generate binary tree with level-traversal sequence
+// denote nullptr with INT_MAX in sequence
+TreeNode* buildTree(const vector<int>& seq) {
+	if (seq.empty()) return NULL;
+ 	TreeNode* root = new TreeNode(seq[0]);
+	queue<TreeNode*> q;
+	q.push(root);
+	int i = 1;
+	while (!q.empty() && i < seq.size()) {
+		TreeNode* curr = q.front();
+		q.pop();
+		if (seq[i] != INT_MAX) {
+			curr->left = new TreeNode(seq[i]);
+			q.push(curr->left);
+		}
+		i++;
+		if (i < seq.size() && seq[i] != INT_MAX) {
+			curr->right = new TreeNode(seq[i]);
+			q.push(curr->right);
+		}
+		i++;
 	}
-	return t;
+	return root;
 }
 
-//二叉树的前序遍历
+// level_traversal of BST
+void levelTraversal(TreeNode* root) {
+	if (root == nullptr) return;
+	queue<TreeNode*> q;
+	q.push(root);
+	while (!q.empty()) {
+		int sz = q.size();
+		while (sz--) {
+			TreeNode* curr = q.front();
+			q.pop();
+			cout << curr->val << "\t";
+			if (curr->left) q.push(curr->left);
+			if (curr->right) q.push(curr->right);
+		}
+		cout << endl;
+	}
+}
+
+// preorder traversal of BST
 vector<int> preOrderTraversal(TreeNode * root)
 {
 	vector<int> v ;
@@ -47,7 +71,7 @@ vector<int> preOrderTraversal(TreeNode * root)
 	return v;
 }
 
-//二叉树的中序遍历
+// inorder traversal of BST
 vector<int> inOrderTraversal(TreeNode * root)
 {
 	vector<int> v;
@@ -63,7 +87,7 @@ vector<int> inOrderTraversal(TreeNode * root)
 	return v;
 }
 
-//二叉树的后序遍历
+// postorder traversal of BST
 vector<int> postOrderTraversal(TreeNode * root)
 {
 	vector<int> v;
@@ -79,32 +103,12 @@ vector<int> postOrderTraversal(TreeNode * root)
 	return v;
 }
 
-void Mirror(TreeNode *root)
-{
-	if (root == NULL) return;
-	else
-	{
-		TreeNode *temp = root->left;
-		root->left = root->right;
-		root->right = temp;
-		Mirror(root->left);
-		Mirror(root->right);
-	}
-}
-
-
 
 int main()
 {
-	vector<int> v = { 8, 6, 5, INT_MAX, INT_MAX, 7, 
-		INT_MAX, INT_MAX, 10, 9, INT_MAX, 
-		INT_MAX, 11, INT_MAX, INT_MAX };
-	TreeNode *root = binaryTreeGenerate(v);
-	Mirror(root);
-	vector<int> v3 = preOrderTraversal(root);
-
-	for (vector<int>::iterator iter = v3.begin(); iter != v3.end();iter++)
-	{
-		cout << *iter << '\t';
-	}
+	vector<int> v = {5, 3, 7, 1, 4, 6, 8};
+	TreeNode *root = buildTree(v);
+	levelTraversal(root);
+	system("pause");
+	return 0;
 }
