@@ -103,12 +103,12 @@ vector<int> postOrderTraversal(TreeNode * root)
 	return v;
 }
 
-
-int main()
-{
-	vector<int> v = {5, 3, 7, 1, 4, 6, 8};
-	TreeNode *root = buildTree(v);
-	levelTraversal(root);
-	system("pause");
-	return 0;
-}
+// test code
+// int main()
+// {
+// 	vector<int> v = {5, 3, 7, 1, 4, 6, 8};
+// 	TreeNode *root = buildTree(v);
+// 	levelTraversal(root);
+// 	system("pause");
+// 	return 0;
+// }
