@@ -125,5 +125,64 @@ void quickSort(vector<int>& nums, int low, int high) {
 时间复杂度为$O(nlgn)$，采用了临时数组，空间复杂度为$O(1)$，但是为**不稳定**排序算法。当所有元素均重复或者大量元素为重复时，上述算法会发生退化。轴点划分的两端极度不平衡，时间将退化为$O^{2}$.
 
 # 3. 非比较的排序方法
+
+> **排序算法的下界**
+>
+> 基于比较的排序方法（*在排序的最终结果中，各元素的次序依赖于它们之间的比较*）时间复杂度不会低于$\Omega(nlg~n~)$。
+
+如果数据满足某种特殊的条件时，借助一些辅助空间可以将排序的时间复杂度在$O(n)$.
 ## 3.1. 计数排序
+当$n$个输入均是在0~k区间内的整数时，可以用计数排序的方法在线性时间内进行排序。
+
+首先定义一个k+1长的计数数组count，并将该数组每位都置零。然后对无序数组进行遍历，遍历到元素x时，将count[x]加一进行计数。然后再对count进行中非零的位置
+```C++
+// assume the number is between 0 and k
+vector<int> countSort(const vector<int>& nums, int k) {
+    vector<int> count(k+1, 0);
+    for (int n : nums) count[n]++;
+    // accumulate
+    for (int i = 1; i < count.size(); ++i)  count[i] = count[i] + count[i-1];
+    // put number in right position
+    vector<int> sorted_num(nums.size(), 0);
+    for (int i = nums.size() - 1; i >= 0; i--) {
+        sorted_num[count[nums[i]] - 1] = nums[i];
+        count[nums[i]]--;
+    }
+    return sorted_num;
+}
+```
+计算完之后，对count进行累加，count[i]表示小于等于i的元素的数量。然后对原来的无序数组进行从末尾进行遍历，把元素放到正确的位置上，同时还保证了稳定性。
+
+时间复杂度$O(k+n)$，空间复杂度为$O(k)$（不计输出数组所占用的空间），并且排序算法是**稳定**的。
+
 ## 3.2. 桶排序
+
+桶排序假设输入数据服从[min, max]之间的均匀分布。
+```C++
+vector<double> bucketSort(vector<double> nums) {
+    // find minimum and maximum number
+    double M = DBL_MIN, N = DBL_MAX;
+    vector<vector<double>> bucket(nums.size());
+    for (double d : nums) {
+        M = max(d, M);
+        N = min(d, N);
+    }
+    // divide into n buckets
+    for (double d : nums) {
+        unsigned int index = (d - N) * nums.size() / (M - N);
+        index = min(index, bucket.size() - 1);
+        bucket[index].push_back(d);
+    }
+    // sort each buck with any CBA sort algorithm
+    for (int i = 0; i < bucket.size(); ++i) sort(bucket[i].begin(), bucket[i].end());
+    // output
+    vector<double> sorted;
+    for (int i = 0; i < bucket.size(); ++i)
+        for (double d : bucket[i]) sorted.push_back(d);
+    return sorted;
+}
+```
+如果输入$n$个数据满足均匀分布，假设桶的数量为$m$个,平均每个桶中的数据个数为$\frac{n}{m}$。那么渐进时间复杂度为
+$O(n + m\times(\frac{n}{m}lg(\frac{n}{m})))$,即$O(n + nlgn-nlgm)$，当桶的数量$m$接近数据量$n$时，时间复杂度$O(n)$。空间复杂度为$O(n)$.
+
+应当指出，在最坏的情况下，数据分布极度集中，均分布在某一个桶中，那么时间复杂度为$\Theta(nlg~n~)$.
