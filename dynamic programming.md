@@ -16,20 +16,22 @@ f(n)=f(n-1)+f(n-2) \\
 f(0)= 1,~f(1)=1 \\
 \end{matrix}$$(1)
 
-<img src = "http://shengfazhu.com/wp-content/uploads/2018/10/recursive_fibonacci.jpg" width = "150" >
-
 # 1.1 递归求解
+
 ```cpp
 int fibonacci(int n) {
     if (n == 0 || n == 1) return 1;
     return fibonacci(n - 1) + fibonacci(n-2);
 }
 ```
+<center><img src = "http://shengfazhu.com/wp-content/uploads/2018/10/recursive_fibonacci.jpg" width = "200"></center>
 
+如图中所示阴影部分节点实质是被重复计算了，如果n越大，那么重复计算的节点将更多，这也就是n较大时，程序耗时长的重要原因。算法的时间复杂度是指数级的$O(c^{n})$.
 
 # 1.2 带记忆的递归
 
-# 1.2 动态规划 
+# 1.2 动态规划
+
 > 动态规划两个特征：
 > - **最优子结构**：所有子结构的最优解重合得到原问题的解一定是原问题的最优解
 > - **重复子问题**：需要求解的子问题中存在大量的重复，动态规划记录了子问题的解，避免重复求解子问题
