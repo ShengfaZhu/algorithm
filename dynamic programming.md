@@ -16,9 +16,7 @@ f(n)=f(n-1)+f(n-2) \\
 f(0)= 1,~f(1)=1 \\
 \end{matrix}$$(1)
 
-<img src = "http://shengfazhu.com/wp-content/uploads/2018/09/IMG_20140908_133434.jpg">
-
-<img src = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539410389301&di=25b4292de029f42049f8bf3b9d4c023f&imgtype=0&src=http%3A%2F%2Fp3.qhimg.com%2Ft017285b30c6f15af6e.jpg">
+<img src = "http://shengfazhu.com/wp-content/uploads/2018/10/recursive_fibonacci.jpg" width = "150" >
 
 # 1.1 递归求解
 ```cpp
