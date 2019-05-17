@@ -10,3 +10,5 @@ codes for learning algorithm
 [动态规划 Dynamic programming](https://github.com/ShengfaZhu/algorithm/blob/master/dynamic%20programming.md)
 
 [动态规划-背包问题 Knapsack problem](https://github.com/ShengfaZhu/algorithm/blob/master/dynamic%20programming%20II-knapsack%20problem.md)
+
+[二叉树](https://github.com/ShengfaZhu/LeetCode/blob/master/binary_tree.md)
